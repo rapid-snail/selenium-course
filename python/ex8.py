@@ -10,7 +10,7 @@ def main():
         wait = WebDriverWait(driver, 10) # seconds
         wait.until(EC.title_contains("Online Store"))
 
-        picts = driver.find_elements_by_class_name("product.column.shadow.hover-light")
+        picts = driver.find_elements_by_class_name("product")
 
         for pict in picts:
             stickers = pict.find_elements_by_class_name("sticker")
