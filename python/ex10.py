@@ -12,8 +12,6 @@ def split_rgba(s):
 
 
 def ensure_view_ok(product):
-    assert product["regular_font_size"].endswith("px")
-    assert product["campaign_font_size"].endswith("px")
     font_size_regular = float(product["regular_font_size"][:-2])
     font_size_campaign = float(product["campaign_font_size"][:-2])
     if font_size_campaign <= font_size_regular:
