@@ -15,16 +15,19 @@ def main():
             link = driver.find_element_by_css_selector(".content .product a") # ссылка на первую утку
             link.click()
             wait.until(EC.title_contains("My Store"))
-            driver.find_element_by_css_selector("#cart span[class=quantity]") # количество уток в корзине
+            q = driver.find_element_by_css_selector("#cart span.quantity") # количество уток в корзине
+            quantity = int(q.text)
+
             elm = driver.find_elements_by_name("options[Size]") # селект у желтой утки
             if len(elm) > 0:
                 select = Select(elm[0])
                 select.select_by_index(1) # установили размер утки - маленькая
             btn = driver.find_element_by_name("add_cart_product") # кнопка Добавить в корзину
             btn.click()
-            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "#cart span[class=quantity][style]"))) # количество уток в корзине изменилось
+            wait.until(EC.text_to_be_present_in_element((By.CSS_SELECTOR, "#cart span.quantity"),str(quantity+1))) # количество уток увеличилось
+
         print("Товары добавлены успешно")
-        link = driver.find_element_by_css_selector("#cart a") # ссылка на корзину
+        link = driver.find_element_by_css_selector("#cart a.link") # ссылка на корзину
         link.click()
         wait.until(EC.title_contains("My Store"))
         # в корзине
