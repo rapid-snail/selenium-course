@@ -21,7 +21,7 @@ def main():
                 print ("Стикер один")
 
     finally:
-        driver.close()
+        driver.quit()
 
 
 if __name__ == "__main__":
